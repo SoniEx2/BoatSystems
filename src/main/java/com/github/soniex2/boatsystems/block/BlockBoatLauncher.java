@@ -45,7 +45,6 @@ public class BlockBoatLauncher extends BlockContainer {
                 double sin = -Math.sin(angle);
                 double cos = -Math.cos(angle);
                 e.addVelocity(cos * speed, 0., sin * speed);
-                System.out.println(String.format("x:%f y:%f z:%f s:%f c:%f a:%f p:%f y:%f", e.motionX, e.motionY, e.motionZ, sin, cos, angle, e.rotationPitch, Math.toRadians(e.rotationYaw)));
             } else {
                 // easter egg? :P
                 throw new WatTheHellJustHappenedException(String.format("Unexpected TileEntity %s for block at %d, %d, %d on world %s (dimension %d, %s)", te.getClass().getName(), x, y, z, w.getWorldInfo().getWorldName(), w.provider.dimensionId, w.provider.getDimensionName()));
