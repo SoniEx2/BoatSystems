@@ -7,6 +7,9 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.BlockSnapshot;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.event.ForgeEventFactory;
 
 /**
  * @author soniex2
@@ -17,7 +20,14 @@ public class ItemBuoyantBlock extends ItemBlock {
     }
 
     @Override
+    public boolean onItemUse(ItemStack is, EntityPlayer p, World w, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
+        // TODO fix this
+        return super.onItemUse(is, p, w, x, y, z, side, hitX, hitY, hitZ);
+    }
+
+    @Override
     public ItemStack onItemRightClick(ItemStack is, World w, EntityPlayer p) {
+        // TODO fix this (aka merge it with onItemUse somehow)
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(w, p, true);
 
         if (movingobjectposition == null) {
@@ -38,9 +48,9 @@ public class ItemBuoyantBlock extends ItemBlock {
 
                 if (w.getBlock(i, j, k).getMaterial() == Material.water && w.getBlockMetadata(i, j, k) == 0 && w.isAirBlock(i, j + 1, k)) {
                     // special case for handling block placement with water lilies
-                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(w, i, j + 1, k);
+                    BlockSnapshot blocksnapshot = BlockSnapshot.getBlockSnapshot(w, i, j + 1, k);
                     w.setBlock(i, j + 1, k, this.field_150939_a);
-                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(p, blocksnapshot, net.minecraftforge.common.util.ForgeDirection.UP).isCanceled()) {
+                    if (ForgeEventFactory.onPlayerBlockPlace(p, blocksnapshot, ForgeDirection.UP).isCanceled()) {
                         blocksnapshot.restore(true, false);
                         return is;
                     }
