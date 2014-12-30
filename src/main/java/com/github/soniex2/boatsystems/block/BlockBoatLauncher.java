@@ -11,8 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 /**
  * @author soniex2
  */
@@ -26,10 +24,13 @@ public class BlockBoatLauncher extends BlockContainer {
     }
 
     @Override
-    public void addCollisionBoxesToList(World w, int x, int y, int z, AxisAlignedBB aabb, List l, Entity e) {
-        if (e == null || !(e instanceof EntityBoat)) {
-            super.addCollisionBoxesToList(w, x, y, z, aabb, l, e);
-        }
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z) {
+        return null;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
     }
 
     @Override

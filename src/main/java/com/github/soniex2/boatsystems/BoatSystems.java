@@ -1,6 +1,7 @@
 package com.github.soniex2.boatsystems;
 
 import com.github.soniex2.boatsystems.init.BSBlocks;
+import com.github.soniex2.boatsystems.init.BSFluids;
 import com.github.soniex2.boatsystems.proxy.CommonProxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -28,6 +29,7 @@ public class BoatSystems {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        BSFluids.init();
         BSBlocks.init();
     }
 
